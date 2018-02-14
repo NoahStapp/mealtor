@@ -1,13 +1,13 @@
 import { RECIPES_ARE_LOADING, RECIPES_FETCH_SUCCESS, RECIPE_GET_NEW } from '../actions/actions';
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 // Inital state for Redux store
 const initialState = {
-    ingredients: ['chicken', 'cheese', 'onions'],
     recipes: [],
     isLoading: false,
     hasRecipes: false,
-    currentRecipe: null,
+    currentRecipe: {},
     recipeIndex: 0
 };
 
@@ -24,7 +24,7 @@ function storeData(state = initialState, action) {
             return Object.assign({}, state, {
                 hasRecipes: true,
                 recipes: action.recipes,
-                currentRecipe: getNewRecipe(state.recipes, state.recipeIndex)
+                currentRecipe: state.recipes[state.recipeIndex]
             });
         // Updates current recipe and calls helper functions
         case RECIPE_GET_NEW:
@@ -54,6 +54,6 @@ function updateRecipeIndex(recipeIndex) {
 
 // }
 
-const mealtor = combineReducers({storeData});
+const mealtor = combineReducers({storeData, form: formReducer});
 
 export default mealtor

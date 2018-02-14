@@ -31,7 +31,7 @@ export function fetchRecipes() {
     // Recipes are loading
     dispatch(recipesAreLoading(true))
     // Get ingredients from store 
-    const {ingredients} = getState().storeData;
+    const {ingredients} = getState().form.ingredients.values;
     console.log(ingredients);
     fetch("/api/fetch/" + ingredients)
       .then((response) => {

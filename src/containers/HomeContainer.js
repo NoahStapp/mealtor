@@ -4,13 +4,13 @@ import Home from '../components/Home';
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoad: () => dispatch(fetchRecipes())
+        onSubmit: () => dispatch(fetchRecipes())
     };
 };
 
 const mapStateToProps = state => {
     return {
-        recipes: state.storeData.recipes
+        currentRecipe: state.storeData.currentRecipe
     };
 };
 

@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import Recipe from './Recipe'
+import PropTypes from 'prop-types';
+import Recipe from './Recipe';
+import IngredientsForm from './IngredientsForm';
 import logo from '../logo.svg';
 import '../App.css';
 
 class Home extends Component {
-
-  componentDidMount() {
-    this.props.onLoad()
-  }
   render() {
-    const items = this.props.recipes.map(item => <Recipe key={item.recipe_id} recipe={item} />);
+    const item = this.props.currentRecipe;
     return (
       <div className="App">
         <header className="App-header">
@@ -20,7 +17,8 @@ class Home extends Component {
             Curated recipes based on your choices
           </p>
         </header>
-        {items}
+          <IngredientsForm onSubmit={this.props.onSubmit} />
+          <Recipe key={item.recipe_id} recipe={item} />
       </div>
     );
   }
